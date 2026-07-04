@@ -1,0 +1,35 @@
+name: Terraform Plan
+
+on:
+  pull_request:
+    paths:
+      - '**.tf'
+      - '.github/workflows/terraform-plan.yml'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan -no-color -out=tfplan
+
+      - name: Export plan JSON
+        run: terraform show -json tfplan > plan.json
+
+      - name: Post plan comment
+        uses: patrickmackin05/TF-Plan-Comment@v1
+        with:
+          plan-json-path: plan.json

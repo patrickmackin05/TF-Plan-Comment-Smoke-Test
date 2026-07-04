@@ -1,0 +1,5 @@
+.terraform/
+*.tfplan
+plan.json
+generated/
+.DS_Store
