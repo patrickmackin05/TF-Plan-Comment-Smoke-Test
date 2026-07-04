@@ -37,14 +37,34 @@ The `test/plan-comment-smoke` branch should produce:
 - **Create** — `local_file.feature_flag` (new resource)
 - **Destroy** — `local_file.legacy_marker` (removed)
 
-## Setup (if starting fresh)
+## Setup
+
+### 1. Create the GitHub repo and push
+
+Create a new **public** repo at https://github.com/new named `TF-Plan-Comment-Smoke-Test` (no README/license — this repo has them).
+
+Then from this folder:
 
 ```bash
-git clone https://github.com/patrickmackin05/TF-Plan-Comment-Smoke-Test.git
-cd TF-Plan-Comment-Smoke-Test
-git checkout test/plan-comment-smoke
-gh pr create --base main --head test/plan-comment-smoke --title "Smoke test TF Plan Comment"
+cd "/Users/patrickmackin/non-work repos/TF-Plan-Comment-Smoke-Test"
+git remote add origin https://github.com/patrickmackin05/TF-Plan-Comment-Smoke-Test.git
+git push -u origin main
+git push -u origin test/plan-comment-smoke
 ```
+
+### 2. Open the PR
+
+```bash
+gh pr create --base main --head test/plan-comment-smoke \
+  --title "Smoke test: TF Plan Comment" \
+  --body "Verifies plan comment posting and update-on-push behavior."
+```
+
+Or open manually: https://github.com/patrickmackin05/TF-Plan-Comment-Smoke-Test/compare/main...test/plan-comment-smoke
+
+### 3. Run the checklist above
+
+Requires `patrickmackin05/TF-Plan-Comment@v1` to be published. If the workflow fails because the release tag doesn't exist yet, temporarily change the workflow to `@main` and push.
 
 ## Notes
 
