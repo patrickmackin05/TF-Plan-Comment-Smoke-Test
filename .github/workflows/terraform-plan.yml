@@ -24,7 +24,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -no-color -out=tfplan
+        run: terraform plan -no-color -refresh=false -out=tfplan
 
       - name: Export plan JSON
         run: terraform show -json tfplan > plan.json

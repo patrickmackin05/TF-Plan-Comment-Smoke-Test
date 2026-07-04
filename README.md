@@ -33,7 +33,7 @@ Commit and push. The workflow re-runs and should update the existing comment.
 
 The `test/plan-comment-smoke` branch should produce:
 
-- **Update** — `local_file.app_config` (version 1 → 2)
+- **Replace** — `local_file.app_config` (version 1 → 2)
 - **Create** — `local_file.feature_flag` (new resource)
 - **Destroy** — `local_file.legacy_marker` (removed)
 
@@ -49,4 +49,5 @@ gh pr create --base main --head test/plan-comment-smoke --title "Smoke test TF P
 ## Notes
 
 - `terraform.tfstate` is committed intentionally so plans show realistic diffs (test repo only).
+- `generated/` is gitignored (those files don't exist in CI). The workflow uses `-refresh=false` so Terraform trusts the committed state instead of checking files on disk.
 - Requires `patrickmackin05/TF-Plan-Comment@v1` to be published before the workflow will succeed.
