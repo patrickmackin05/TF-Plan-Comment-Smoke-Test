@@ -33,3 +33,7 @@ jobs:
         uses: patrickmackin05/TF-Plan-Comment@v1
         with:
           plan-json-path: plan.json
+
+      # Intentional CI failure for PRognosis triage test — do not merge
+      - name: Intentional failure for PRognosis triage test
+        run: exit 1
