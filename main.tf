@@ -11,10 +11,10 @@ terraform {
 
 resource "local_file" "app_config" {
   filename = "${path.module}/generated/config.txt"
-  content  = "version=1\nenvironment=dev"
+  content  = "version=2\nenvironment=dev"
 }
 
-resource "local_file" "legacy_marker" {
-  filename = "${path.module}/generated/legacy.txt"
-  content  = "deprecated=true"
+resource "local_file" "feature_flag" {
+  filename = "${path.module}/generated/feature.txt"
+  content  = "enabled=true"
 }
